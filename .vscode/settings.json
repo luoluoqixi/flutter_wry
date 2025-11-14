@@ -1,0 +1,12 @@
+{
+  "editor.tabSize": 2,
+  "editor.formatOnSave": true,
+  "editor.formatOnSaveMode": "file",
+  "files.eol": "\n",
+  "rust-analyzer.linkedProjects": ["${workspaceFolder}/rust/Cargo.toml"],
+  "rust-analyzer.check.command": "clippy",
+  "[rust]": {
+    "editor.tabSize": 4,
+    "editor.defaultFormatter": "rust-lang.rust-analyzer"
+  },
+}
