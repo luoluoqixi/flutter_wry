@@ -37,3 +37,29 @@ pub struct WryWebViewConfig {
     /// - iOS: Open Safari > Develop > [Your Device Name] > [Your WebView] to get the devtools window.
     pub initial_devtools: Option<bool>,
 }
+
+impl WryWebViewConfig {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn with_initial_url(mut self, url: impl AsRef<str>) -> Self {
+        self.initial_url = Some(url.as_ref().to_string());
+        self
+    }
+
+    pub fn with_initial_html(mut self, html: impl AsRef<str>) -> Self {
+        self.initial_html = Some(html.as_ref().to_string());
+        self
+    }
+
+    pub fn with_initial_focused(mut self, focused: bool) -> Self {
+        self.initial_focused = Some(focused);
+        self
+    }
+
+    pub fn with_initial_devtools(mut self, devtools: bool) -> Self {
+        self.initial_devtools = Some(devtools);
+        self
+    }
+}

@@ -1,6 +1,6 @@
 use wry::raw_window_handle::{HandleError, HasWindowHandle, WindowHandle};
 
-pub enum FlutterWindowHandle {
+pub enum RawWindowHandle {
     #[cfg(target_os = "windows")]
     Hwnd(isize),
     #[cfg(target_os = "macos")]
@@ -13,21 +13,21 @@ pub enum FlutterWindowHandle {
     UiView(*mut objc::runtime::Object),
 }
 
-pub struct FlutterWindow {
-    pub window: FlutterWindowHandle,
+pub(crate) struct RawWindow {
+    pub window: RawWindowHandle,
 }
 
-impl FlutterWindow {
-    pub fn new(window: FlutterWindowHandle) -> Self {
+impl RawWindow {
+    pub fn new(window: RawWindowHandle) -> Self {
         Self { window }
     }
 }
 
-impl HasWindowHandle for FlutterWindow {
+impl HasWindowHandle for RawWindow {
     fn window_handle(&self) -> Result<WindowHandle<'_>, HandleError> {
         match self.window {
             #[cfg(target_os = "windows")]
-            FlutterWindowHandle::Hwnd(raw_handle) => {
+            RawWindowHandle::Hwnd(raw_handle) => {
                 use std::num::NonZeroIsize;
                 use wry::raw_window_handle::{RawWindowHandle, Win32WindowHandle};
 

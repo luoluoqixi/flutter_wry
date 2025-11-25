@@ -9,20 +9,15 @@ import 'window.dart';
 import 'wry_webview_config.dart';
 import 'wry_webview_error.dart';
 
-
-            
-
-            
-
-            
-                // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<WryWebViewController>>
-                abstract class WryWebViewController implements RustOpaqueInterface {
-                      // HINT: Make it `#[frb(sync)]` to let it become the default constructor of Dart class.
-static Future<WryWebViewController>  newInstance({required WryWebViewConfig config , required FlutterWindowHandle handle })=>RustLib.instance.api.crateApiWryWebviewWryWebviewControllerWryWebViewControllerNew(config: config, handle: handle);
-
-
-
-                    
-                }
-                
-            
+// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<WryWebViewController>>
+abstract class WryWebViewController implements RustOpaqueInterface {
+  // HINT: Make it `#[frb(sync)]` to let it become the default constructor of Dart class.
+  static Future<WryWebViewController> newInstance({
+    required WryWebViewConfig config,
+    required FlutterWindowHandle handle,
+  }) => RustLib.instance.api
+      .crateApiWryWebviewWryWebviewControllerWryWebViewControllerNew(
+        config: config,
+        handle: handle,
+      );
+}

@@ -3,164 +3,84 @@
 
 // ignore_for_file: unused_import, unused_element, unnecessary_import, duplicate_ignore, invalid_use_of_internal_member, annotate_overrides, non_constant_identifier_names, curly_braces_in_flow_control_structures, prefer_const_literals_to_create_immutables, unused_field
 
-
 // Static analysis wrongly picks the IO variant, thus ignore this
 // ignore_for_file: argument_type_not_assignable
 
 import 'api/simple.dart';
-import 'api/wry_webview/window.dart';
-import 'api/wry_webview/wry_webview_config.dart';
-import 'api/wry_webview/wry_webview_controller.dart';
-import 'api/wry_webview/wry_webview_error.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'frb_generated.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated_web.dart';
 
+abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
+  RustLibApiImplPlatform({
+    required super.handler,
+    required super.wire,
+    required super.generalizedFrbRustBinding,
+    required super.portManager,
+  });
 
+  @protected
+  String dco_decode_String(dynamic raw);
 
+  @protected
+  Uint8List dco_decode_list_prim_u_8_strict(dynamic raw);
 
-                abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
-                  RustLibApiImplPlatform({
-                    required super.handler,
-                    required super.wire,
-                    required super.generalizedFrbRustBinding,
-                    required super.portManager,
-                  });
+  @protected
+  int dco_decode_u_8(dynamic raw);
 
-                  CrossPlatformFinalizerArg get rust_arc_decrement_strong_count_WryWebViewControllerPtr => wire.rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerWryWebViewController;
+  @protected
+  void dco_decode_unit(dynamic raw);
 
+  @protected
+  String sse_decode_String(SseDeserializer deserializer);
 
+  @protected
+  Uint8List sse_decode_list_prim_u_8_strict(SseDeserializer deserializer);
 
-                  @protected WryWebViewController dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerWryWebViewController(dynamic raw);
+  @protected
+  int sse_decode_u_8(SseDeserializer deserializer);
 
-@protected WryWebViewController dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerWryWebViewController(dynamic raw);
+  @protected
+  void sse_decode_unit(SseDeserializer deserializer);
 
-@protected String dco_decode_String(dynamic raw);
+  @protected
+  int sse_decode_i_32(SseDeserializer deserializer);
 
-@protected bool dco_decode_bool(dynamic raw);
+  @protected
+  bool sse_decode_bool(SseDeserializer deserializer);
 
-@protected bool dco_decode_box_autoadd_bool(dynamic raw);
+  @protected
+  void sse_encode_String(String self, SseSerializer serializer);
 
-@protected FlutterWindowHandle dco_decode_box_autoadd_flutter_window_handle(dynamic raw);
+  @protected
+  void sse_encode_list_prim_u_8_strict(
+    Uint8List self,
+    SseSerializer serializer,
+  );
 
-@protected WryWebViewConfig dco_decode_box_autoadd_wry_web_view_config(dynamic raw);
+  @protected
+  void sse_encode_u_8(int self, SseSerializer serializer);
 
-@protected FlutterWindow dco_decode_flutter_window(dynamic raw);
+  @protected
+  void sse_encode_unit(void self, SseSerializer serializer);
 
-@protected FlutterWindowHandle dco_decode_flutter_window_handle(dynamic raw);
+  @protected
+  void sse_encode_i_32(int self, SseSerializer serializer);
 
-@protected PlatformInt64 dco_decode_isize(dynamic raw);
-
-@protected Uint8List dco_decode_list_prim_u_8_strict(dynamic raw);
-
-@protected String? dco_decode_opt_String(dynamic raw);
-
-@protected bool? dco_decode_opt_box_autoadd_bool(dynamic raw);
-
-@protected int dco_decode_u_8(dynamic raw);
-
-@protected void dco_decode_unit(dynamic raw);
-
-@protected BigInt dco_decode_usize(dynamic raw);
-
-@protected WryWebViewConfig dco_decode_wry_web_view_config(dynamic raw);
-
-@protected WryWebViewError dco_decode_wry_web_view_error(dynamic raw);
-
-@protected WryWebViewController sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerWryWebViewController(SseDeserializer deserializer);
-
-@protected WryWebViewController sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerWryWebViewController(SseDeserializer deserializer);
-
-@protected String sse_decode_String(SseDeserializer deserializer);
-
-@protected bool sse_decode_bool(SseDeserializer deserializer);
-
-@protected bool sse_decode_box_autoadd_bool(SseDeserializer deserializer);
-
-@protected FlutterWindowHandle sse_decode_box_autoadd_flutter_window_handle(SseDeserializer deserializer);
-
-@protected WryWebViewConfig sse_decode_box_autoadd_wry_web_view_config(SseDeserializer deserializer);
-
-@protected FlutterWindow sse_decode_flutter_window(SseDeserializer deserializer);
-
-@protected FlutterWindowHandle sse_decode_flutter_window_handle(SseDeserializer deserializer);
-
-@protected PlatformInt64 sse_decode_isize(SseDeserializer deserializer);
-
-@protected Uint8List sse_decode_list_prim_u_8_strict(SseDeserializer deserializer);
-
-@protected String? sse_decode_opt_String(SseDeserializer deserializer);
-
-@protected bool? sse_decode_opt_box_autoadd_bool(SseDeserializer deserializer);
-
-@protected int sse_decode_u_8(SseDeserializer deserializer);
-
-@protected void sse_decode_unit(SseDeserializer deserializer);
-
-@protected BigInt sse_decode_usize(SseDeserializer deserializer);
-
-@protected WryWebViewConfig sse_decode_wry_web_view_config(SseDeserializer deserializer);
-
-@protected WryWebViewError sse_decode_wry_web_view_error(SseDeserializer deserializer);
-
-@protected int sse_decode_i_32(SseDeserializer deserializer);
-
-@protected void sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerWryWebViewController(WryWebViewController self, SseSerializer serializer);
-
-@protected void sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerWryWebViewController(WryWebViewController self, SseSerializer serializer);
-
-@protected void sse_encode_String(String self, SseSerializer serializer);
-
-@protected void sse_encode_bool(bool self, SseSerializer serializer);
-
-@protected void sse_encode_box_autoadd_bool(bool self, SseSerializer serializer);
-
-@protected void sse_encode_box_autoadd_flutter_window_handle(FlutterWindowHandle self, SseSerializer serializer);
-
-@protected void sse_encode_box_autoadd_wry_web_view_config(WryWebViewConfig self, SseSerializer serializer);
-
-@protected void sse_encode_flutter_window(FlutterWindow self, SseSerializer serializer);
-
-@protected void sse_encode_flutter_window_handle(FlutterWindowHandle self, SseSerializer serializer);
-
-@protected void sse_encode_isize(PlatformInt64 self, SseSerializer serializer);
-
-@protected void sse_encode_list_prim_u_8_strict(Uint8List self, SseSerializer serializer);
-
-@protected void sse_encode_opt_String(String? self, SseSerializer serializer);
-
-@protected void sse_encode_opt_box_autoadd_bool(bool? self, SseSerializer serializer);
-
-@protected void sse_encode_u_8(int self, SseSerializer serializer);
-
-@protected void sse_encode_unit(void self, SseSerializer serializer);
-
-@protected void sse_encode_usize(BigInt self, SseSerializer serializer);
-
-@protected void sse_encode_wry_web_view_config(WryWebViewConfig self, SseSerializer serializer);
-
-@protected void sse_encode_wry_web_view_error(WryWebViewError self, SseSerializer serializer);
-
-@protected void sse_encode_i_32(int self, SseSerializer serializer);
-                }
-                
-
+  @protected
+  void sse_encode_bool(bool self, SseSerializer serializer);
+}
 
 // Section: wire_class
 
 class RustLibWire implements BaseWire {
-            RustLibWire.fromExternalLibrary(ExternalLibrary lib);
+  RustLibWire.fromExternalLibrary(ExternalLibrary lib);
+}
 
-            void rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerWryWebViewController(int ptr) => wasmModule.rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerWryWebViewController(ptr);
+@JS('wasm_bindgen')
+external RustLibWasmModule get wasmModule;
 
-void rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerWryWebViewController(int ptr) => wasmModule.rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerWryWebViewController(ptr);
-        }
-        @JS('wasm_bindgen') external RustLibWasmModule get wasmModule;
-
-        @JS() @anonymous extension type RustLibWasmModule._(JSObject _) implements JSObject {
-            external void rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerWryWebViewController(int ptr);
-
-external void rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerWryWebViewController(int ptr);
-        }
-        
+@JS()
+@anonymous
+extension type RustLibWasmModule._(JSObject _) implements JSObject {}

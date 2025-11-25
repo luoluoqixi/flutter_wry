@@ -4,12 +4,23 @@ version = "0.1.0"
 edition = "2021"
 
 [lib]
-crate-type = ["cdylib", "staticlib"]
+crate-type = ["cdylib", "staticlib", "rlib"]
+
+[[example]]
+name = "sample"
+path = "src/examples/sample.rs"
 
 [dependencies]
 flutter_rust_bridge = "=2.11.1"
 thiserror = "2.0"
 wry = "0.53"
+
+[dev-dependencies]
+tao = "0.34"
+
+[build-dependencies]
+flutter_rust_bridge_codegen = { version = "=2.11.1" }
+anyhow = { version = "1.0", features = ["backtrace"] }
 
 [lints.rust]
 unexpected_cfgs = { level = "warn", check-cfg = ['cfg(frb_expand)'] }

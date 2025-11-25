@@ -6,69 +6,73 @@
 import '../../frb_generated.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
+// These function are ignored because they are on traits that is not defined in current crate (put an empty `#[frb]` on it to unignore): `fmt`
 
-            // These function are ignored because they are on traits that is not defined in current crate (put an empty `#[frb]` on it to unignore): `fmt`
+class WryWebViewConfig {
+  /// Load the provided URL when the builder calling [`WebViewBuilder::build`] to create the [`WebView`].
+  /// The provided URL must be valid.
+  ///
+  /// ## Note
+  ///
+  /// Data URLs are not supported, use [`html`](Self::with_html) option instead.
+  final String? initialUrl;
 
+  /// Load the provided HTML string when the builder calling [`WebViewBuilder::build`] to create the [`WebView`].
+  /// This will be ignored if `url` is provided.
+  ///
+  /// # Warning
+  ///
+  /// The Page loaded from html string will have `null` origin.
+  ///
+  /// ## PLatform-specific:
+  ///
+  /// - **Windows:** the string can not be larger than 2 MB (2 * 1024 * 1024 bytes) in total size
+  final String? initialHtml;
 
-            
+  /// Set whether the webview should be focused when created.
+  ///
+  /// ## Platform-specific:
+  ///
+  /// - **macOS / Android / iOS:** Unsupported.
+  final bool? initialFocused;
 
-            class WryWebViewConfig  {
-                /// Load the provided URL when the builder calling [`WebViewBuilder::build`] to create the [`WebView`].
-/// The provided URL must be valid.
-///
-/// ## Note
-///
-/// Data URLs are not supported, use [`html`](Self::with_html) option instead.
-final String? initialUrl;
-/// Load the provided HTML string when the builder calling [`WebViewBuilder::build`] to create the [`WebView`].
-/// This will be ignored if `url` is provided.
-///
-/// # Warning
-///
-/// The Page loaded from html string will have `null` origin.
-///
-/// ## PLatform-specific:
-///
-/// - **Windows:** the string can not be larger than 2 MB (2 * 1024 * 1024 bytes) in total size
-final String? initialHtml;
-/// Set whether the webview should be focused when created.
-///
-/// ## Platform-specific:
-///
-/// - **macOS / Android / iOS:** Unsupported.
-final bool? initialFocused;
-/// Enable or disable web inspector which is usually called devtools.
-///
-/// Note this only enables devtools to the webview. To open it, you can call
-/// [`WebView::open_devtools`], or right click the page and open it from the context menu.
-///
-/// ## Platform-specific
-///
-/// - macOS: This will call private functions on **macOS**. It is enabled in **debug** builds,
-///   but requires `devtools` feature flag to actually enable it in **release** builds.
-/// - Android: Open `chrome://inspect/#devices` in Chrome to get the devtools window. Wry's `WebView` devtools API isn't supported on Android.
-/// - iOS: Open Safari > Develop > [Your Device Name] > [Your WebView] to get the devtools window.
-final bool? initialDevtools;
+  /// Enable or disable web inspector which is usually called devtools.
+  ///
+  /// Note this only enables devtools to the webview. To open it, you can call
+  /// [`WebView::open_devtools`], or right click the page and open it from the context menu.
+  ///
+  /// ## Platform-specific
+  ///
+  /// - macOS: This will call private functions on **macOS**. It is enabled in **debug** builds,
+  ///   but requires `devtools` feature flag to actually enable it in **release** builds.
+  /// - Android: Open `chrome://inspect/#devices` in Chrome to get the devtools window. Wry's `WebView` devtools API isn't supported on Android.
+  /// - iOS: Open Safari > Develop > [Your Device Name] > [Your WebView] to get the devtools window.
+  final bool? initialDevtools;
 
-                const WryWebViewConfig({this.initialUrl ,this.initialHtml ,this.initialFocused ,this.initialDevtools ,});
+  const WryWebViewConfig({
+    this.initialUrl,
+    this.initialHtml,
+    this.initialFocused,
+    this.initialDevtools,
+  });
 
-                static Future<WryWebViewConfig>  default_()=>RustLib.instance.api.crateApiWryWebviewWryWebviewConfigWryWebViewConfigDefault();
+  static Future<WryWebViewConfig> default_() => RustLib.instance.api
+      .crateApiWryWebviewWryWebviewConfigWryWebViewConfigDefault();
 
+  @override
+  int get hashCode =>
+      initialUrl.hashCode ^
+      initialHtml.hashCode ^
+      initialFocused.hashCode ^
+      initialDevtools.hashCode;
 
-                
-
-                
-        @override
-        int get hashCode => initialUrl.hashCode^initialHtml.hashCode^initialFocused.hashCode^initialDevtools.hashCode;
-        
-
-                
-        @override
-        bool operator ==(Object other) =>
-            identical(this, other) ||
-            other is WryWebViewConfig &&
-                runtimeType == other.runtimeType
-                && initialUrl == other.initialUrl&& initialHtml == other.initialHtml&& initialFocused == other.initialFocused&& initialDevtools == other.initialDevtools;
-        
-            }
-            
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is WryWebViewConfig &&
+          runtimeType == other.runtimeType &&
+          initialUrl == other.initialUrl &&
+          initialHtml == other.initialHtml &&
+          initialFocused == other.initialFocused &&
+          initialDevtools == other.initialDevtools;
+}

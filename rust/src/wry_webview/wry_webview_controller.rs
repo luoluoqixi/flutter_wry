@@ -1,5 +1,5 @@
 use super::{
-    window::{FlutterWindow, FlutterWindowHandle},
+    window::{RawWindow, RawWindowHandle},
     wry_webview_config::WryWebViewConfig,
     wry_webview_error::WryWebViewError,
 };
@@ -9,11 +9,11 @@ pub struct WryWebViewController {
 }
 
 impl WryWebViewController {
-    pub fn new(
+    pub fn create(
         config: WryWebViewConfig,
-        handle: FlutterWindowHandle,
+        handle: RawWindowHandle,
     ) -> Result<Self, WryWebViewError> {
-        let window = FlutterWindow::new(handle);
+        let window = RawWindow::new(handle);
 
         let mut webview_builder = wry::WebViewBuilder::new();
         if let Some(url) = config.initial_url {
@@ -36,5 +36,12 @@ impl WryWebViewController {
             .map_err(|err| WryWebViewError::CreationError(err.to_string()))?;
 
         Ok(Self { webview })
+    }
+
+    pub fn inner(&self) -> &wry::WebView {
+        &self.webview
+    }
+    pub fn inner_mut(&mut self) -> &mut wry::WebView {
+        &mut self.webview
     }
 }
