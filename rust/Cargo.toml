@@ -12,8 +12,16 @@ path = "src/examples/sample.rs"
 
 [dependencies]
 flutter_rust_bridge = "=2.11.1"
+anyhow = "1.0"
 thiserror = "2.0"
 wry = "0.53"
+
+[target.'cfg(target_os = "windows")'.dependencies]
+windows = { version = "0.62", features = [
+    "Win32_Foundation",
+    "Win32_UI_WindowsAndMessaging",
+    "Win32_System_LibraryLoader",
+] }
 
 [dev-dependencies]
 tao = "0.34"

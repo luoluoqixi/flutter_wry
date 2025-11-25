@@ -1,5 +1,8 @@
 use wry::raw_window_handle::{HandleError, HasWindowHandle, WindowHandle};
 
+unsafe impl Send for RawWindow {}
+unsafe impl Sync for RawWindow {}
+
 pub enum RawWindowHandle {
     #[cfg(target_os = "windows")]
     Hwnd(isize),

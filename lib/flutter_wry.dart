@@ -1,4 +1,4 @@
 library;
 
-export 'src/rust/api/simple.dart';
-export 'src/rust/frb_generated.dart' show RustLib;
+export 'src/api.dart';
+export 'src/rust/wry_webview/wry_webview_config.dart';

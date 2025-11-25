@@ -4,6 +4,9 @@ use super::{
     wry_webview_error::WryWebViewError,
 };
 
+unsafe impl Send for WryWebViewController {}
+unsafe impl Sync for WryWebViewController {}
+
 pub struct WryWebViewController {
     webview: wry::WebView,
 }
