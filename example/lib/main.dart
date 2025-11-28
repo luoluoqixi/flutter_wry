@@ -2,15 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter_wry/flutter_wry.dart';
 
 Future<void> main() async {
-  await FlutterWry.init();
-  runApp(const MyApp());
+  await flutterWry.init();
+  runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
   void onPressed() {
-    FlutterWry.createWebview(
+    flutterWry.createWebview(
       WryWebViewConfig(initialUrl: 'https://flutter.dev'),
     );
   }
