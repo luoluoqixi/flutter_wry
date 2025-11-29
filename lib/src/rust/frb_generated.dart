@@ -214,6 +214,24 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  WryWebViewPosition dco_decode_box_autoadd_wry_web_view_position(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return dco_decode_wry_web_view_position(raw);
+  }
+
+  @protected
+  WryWebViewSize dco_decode_box_autoadd_wry_web_view_size(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return dco_decode_wry_web_view_size(raw);
+  }
+
+  @protected
+  double dco_decode_f_64(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return raw as double;
+  }
+
+  @protected
   PlatformInt64 dco_decode_isize(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return dcoDecodeI64(raw);
@@ -244,6 +262,22 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  WryWebViewPosition? dco_decode_opt_box_autoadd_wry_web_view_position(
+    dynamic raw,
+  ) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return raw == null
+        ? null
+        : dco_decode_box_autoadd_wry_web_view_position(raw);
+  }
+
+  @protected
+  WryWebViewSize? dco_decode_opt_box_autoadd_wry_web_view_size(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return raw == null ? null : dco_decode_box_autoadd_wry_web_view_size(raw);
+  }
+
+  @protected
   int dco_decode_u_8(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return raw as int;
@@ -259,13 +293,39 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   WryWebViewConfig dco_decode_wry_web_view_config(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     final arr = raw as List<dynamic>;
-    if (arr.length != 4)
-      throw Exception('unexpected arr length: expect 4 but see ${arr.length}');
+    if (arr.length != 6)
+      throw Exception('unexpected arr length: expect 6 but see ${arr.length}');
     return WryWebViewConfig(
       initialUrl: dco_decode_opt_String(arr[0]),
       initialHtml: dco_decode_opt_String(arr[1]),
       initialFocused: dco_decode_opt_box_autoadd_bool(arr[2]),
       initialDevtools: dco_decode_opt_box_autoadd_bool(arr[3]),
+      initialPosition: dco_decode_opt_box_autoadd_wry_web_view_position(arr[4]),
+      initialSize: dco_decode_opt_box_autoadd_wry_web_view_size(arr[5]),
+    );
+  }
+
+  @protected
+  WryWebViewPosition dco_decode_wry_web_view_position(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    final arr = raw as List<dynamic>;
+    if (arr.length != 2)
+      throw Exception('unexpected arr length: expect 2 but see ${arr.length}');
+    return WryWebViewPosition(
+      x: dco_decode_f_64(arr[0]),
+      y: dco_decode_f_64(arr[1]),
+    );
+  }
+
+  @protected
+  WryWebViewSize dco_decode_wry_web_view_size(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    final arr = raw as List<dynamic>;
+    if (arr.length != 2)
+      throw Exception('unexpected arr length: expect 2 but see ${arr.length}');
+    return WryWebViewSize(
+      width: dco_decode_f_64(arr[0]),
+      height: dco_decode_f_64(arr[1]),
     );
   }
 
@@ -307,6 +367,28 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   ) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     return (sse_decode_wry_web_view_config(deserializer));
+  }
+
+  @protected
+  WryWebViewPosition sse_decode_box_autoadd_wry_web_view_position(
+    SseDeserializer deserializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return (sse_decode_wry_web_view_position(deserializer));
+  }
+
+  @protected
+  WryWebViewSize sse_decode_box_autoadd_wry_web_view_size(
+    SseDeserializer deserializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return (sse_decode_wry_web_view_size(deserializer));
+  }
+
+  @protected
+  double sse_decode_f_64(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return deserializer.buffer.getFloat64();
   }
 
   @protected
@@ -358,6 +440,32 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  WryWebViewPosition? sse_decode_opt_box_autoadd_wry_web_view_position(
+    SseDeserializer deserializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+
+    if (sse_decode_bool(deserializer)) {
+      return (sse_decode_box_autoadd_wry_web_view_position(deserializer));
+    } else {
+      return null;
+    }
+  }
+
+  @protected
+  WryWebViewSize? sse_decode_opt_box_autoadd_wry_web_view_size(
+    SseDeserializer deserializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+
+    if (sse_decode_bool(deserializer)) {
+      return (sse_decode_box_autoadd_wry_web_view_size(deserializer));
+    } else {
+      return null;
+    }
+  }
+
+  @protected
   int sse_decode_u_8(SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     return deserializer.buffer.getUint8();
@@ -377,12 +485,38 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
     var var_initialHtml = sse_decode_opt_String(deserializer);
     var var_initialFocused = sse_decode_opt_box_autoadd_bool(deserializer);
     var var_initialDevtools = sse_decode_opt_box_autoadd_bool(deserializer);
+    var var_initialPosition = sse_decode_opt_box_autoadd_wry_web_view_position(
+      deserializer,
+    );
+    var var_initialSize = sse_decode_opt_box_autoadd_wry_web_view_size(
+      deserializer,
+    );
     return WryWebViewConfig(
       initialUrl: var_initialUrl,
       initialHtml: var_initialHtml,
       initialFocused: var_initialFocused,
       initialDevtools: var_initialDevtools,
+      initialPosition: var_initialPosition,
+      initialSize: var_initialSize,
     );
+  }
+
+  @protected
+  WryWebViewPosition sse_decode_wry_web_view_position(
+    SseDeserializer deserializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    var var_x = sse_decode_f_64(deserializer);
+    var var_y = sse_decode_f_64(deserializer);
+    return WryWebViewPosition(x: var_x, y: var_y);
+  }
+
+  @protected
+  WryWebViewSize sse_decode_wry_web_view_size(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    var var_width = sse_decode_f_64(deserializer);
+    var var_height = sse_decode_f_64(deserializer);
+    return WryWebViewSize(width: var_width, height: var_height);
   }
 
   @protected
@@ -437,6 +571,30 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  void sse_encode_box_autoadd_wry_web_view_position(
+    WryWebViewPosition self,
+    SseSerializer serializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_wry_web_view_position(self, serializer);
+  }
+
+  @protected
+  void sse_encode_box_autoadd_wry_web_view_size(
+    WryWebViewSize self,
+    SseSerializer serializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_wry_web_view_size(self, serializer);
+  }
+
+  @protected
+  void sse_encode_f_64(double self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    serializer.buffer.putFloat64(self);
+  }
+
+  @protected
   void sse_encode_isize(PlatformInt64 self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     serializer.buffer.putPlatformInt64(self);
@@ -486,6 +644,32 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  void sse_encode_opt_box_autoadd_wry_web_view_position(
+    WryWebViewPosition? self,
+    SseSerializer serializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+
+    sse_encode_bool(self != null, serializer);
+    if (self != null) {
+      sse_encode_box_autoadd_wry_web_view_position(self, serializer);
+    }
+  }
+
+  @protected
+  void sse_encode_opt_box_autoadd_wry_web_view_size(
+    WryWebViewSize? self,
+    SseSerializer serializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+
+    sse_encode_bool(self != null, serializer);
+    if (self != null) {
+      sse_encode_box_autoadd_wry_web_view_size(self, serializer);
+    }
+  }
+
+  @protected
   void sse_encode_u_8(int self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     serializer.buffer.putUint8(self);
@@ -506,6 +690,31 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
     sse_encode_opt_String(self.initialHtml, serializer);
     sse_encode_opt_box_autoadd_bool(self.initialFocused, serializer);
     sse_encode_opt_box_autoadd_bool(self.initialDevtools, serializer);
+    sse_encode_opt_box_autoadd_wry_web_view_position(
+      self.initialPosition,
+      serializer,
+    );
+    sse_encode_opt_box_autoadd_wry_web_view_size(self.initialSize, serializer);
+  }
+
+  @protected
+  void sse_encode_wry_web_view_position(
+    WryWebViewPosition self,
+    SseSerializer serializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_f_64(self.x, serializer);
+    sse_encode_f_64(self.y, serializer);
+  }
+
+  @protected
+  void sse_encode_wry_web_view_size(
+    WryWebViewSize self,
+    SseSerializer serializer,
+  ) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_f_64(self.width, serializer);
+    sse_encode_f_64(self.height, serializer);
   }
 
   @protected

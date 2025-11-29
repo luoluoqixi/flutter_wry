@@ -47,11 +47,25 @@ class WryWebViewConfig {
   /// - iOS: Open Safari > Develop > [Your Device Name] > [Your WebView] to get the devtools window.
   final bool? initialDevtools;
 
+  /// Specify the webview position relative to its parent if it will be created as a child
+  /// or if created using [`WebViewBuilderExtUnix::new_gtk`] with [`gtk::Fixed`].
+  ///
+  /// Defaults to `x: 0, y: 0, width: 200, height: 200`.
+  final WryWebViewPosition? initialPosition;
+
+  /// Specify the webview position relative to its parent if it will be created as a child
+  /// or if created using [`WebViewBuilderExtUnix::new_gtk`] with [`gtk::Fixed`].
+  ///
+  /// Defaults to `x: 0, y: 0, width: 200, height: 200`.
+  final WryWebViewSize? initialSize;
+
   const WryWebViewConfig({
     this.initialUrl,
     this.initialHtml,
     this.initialFocused,
     this.initialDevtools,
+    this.initialPosition,
+    this.initialSize,
   });
 
   @override
@@ -59,7 +73,9 @@ class WryWebViewConfig {
       initialUrl.hashCode ^
       initialHtml.hashCode ^
       initialFocused.hashCode ^
-      initialDevtools.hashCode;
+      initialDevtools.hashCode ^
+      initialPosition.hashCode ^
+      initialSize.hashCode;
 
   @override
   bool operator ==(Object other) =>
@@ -69,5 +85,43 @@ class WryWebViewConfig {
           initialUrl == other.initialUrl &&
           initialHtml == other.initialHtml &&
           initialFocused == other.initialFocused &&
-          initialDevtools == other.initialDevtools;
+          initialDevtools == other.initialDevtools &&
+          initialPosition == other.initialPosition &&
+          initialSize == other.initialSize;
+}
+
+class WryWebViewPosition {
+  final double x;
+  final double y;
+
+  const WryWebViewPosition({required this.x, required this.y});
+
+  @override
+  int get hashCode => x.hashCode ^ y.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is WryWebViewPosition &&
+          runtimeType == other.runtimeType &&
+          x == other.x &&
+          y == other.y;
+}
+
+class WryWebViewSize {
+  final double width;
+  final double height;
+
+  const WryWebViewSize({required this.width, required this.height});
+
+  @override
+  int get hashCode => width.hashCode ^ height.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is WryWebViewSize &&
+          runtimeType == other.runtimeType &&
+          width == other.width &&
+          height == other.height;
 }

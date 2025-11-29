@@ -41,6 +41,15 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   WryWebViewConfig dco_decode_box_autoadd_wry_web_view_config(dynamic raw);
 
   @protected
+  WryWebViewPosition dco_decode_box_autoadd_wry_web_view_position(dynamic raw);
+
+  @protected
+  WryWebViewSize dco_decode_box_autoadd_wry_web_view_size(dynamic raw);
+
+  @protected
+  double dco_decode_f_64(dynamic raw);
+
+  @protected
   PlatformInt64 dco_decode_isize(dynamic raw);
 
   @protected
@@ -56,6 +65,14 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   PlatformInt64? dco_decode_opt_box_autoadd_isize(dynamic raw);
 
   @protected
+  WryWebViewPosition? dco_decode_opt_box_autoadd_wry_web_view_position(
+    dynamic raw,
+  );
+
+  @protected
+  WryWebViewSize? dco_decode_opt_box_autoadd_wry_web_view_size(dynamic raw);
+
+  @protected
   int dco_decode_u_8(dynamic raw);
 
   @protected
@@ -63,6 +80,12 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   WryWebViewConfig dco_decode_wry_web_view_config(dynamic raw);
+
+  @protected
+  WryWebViewPosition dco_decode_wry_web_view_position(dynamic raw);
+
+  @protected
+  WryWebViewSize dco_decode_wry_web_view_size(dynamic raw);
 
   @protected
   AnyhowException sse_decode_AnyhowException(SseDeserializer deserializer);
@@ -85,6 +108,19 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   );
 
   @protected
+  WryWebViewPosition sse_decode_box_autoadd_wry_web_view_position(
+    SseDeserializer deserializer,
+  );
+
+  @protected
+  WryWebViewSize sse_decode_box_autoadd_wry_web_view_size(
+    SseDeserializer deserializer,
+  );
+
+  @protected
+  double sse_decode_f_64(SseDeserializer deserializer);
+
+  @protected
   PlatformInt64 sse_decode_isize(SseDeserializer deserializer);
 
   @protected
@@ -100,6 +136,16 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   PlatformInt64? sse_decode_opt_box_autoadd_isize(SseDeserializer deserializer);
 
   @protected
+  WryWebViewPosition? sse_decode_opt_box_autoadd_wry_web_view_position(
+    SseDeserializer deserializer,
+  );
+
+  @protected
+  WryWebViewSize? sse_decode_opt_box_autoadd_wry_web_view_size(
+    SseDeserializer deserializer,
+  );
+
+  @protected
   int sse_decode_u_8(SseDeserializer deserializer);
 
   @protected
@@ -107,6 +153,14 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   WryWebViewConfig sse_decode_wry_web_view_config(SseDeserializer deserializer);
+
+  @protected
+  WryWebViewPosition sse_decode_wry_web_view_position(
+    SseDeserializer deserializer,
+  );
+
+  @protected
+  WryWebViewSize sse_decode_wry_web_view_size(SseDeserializer deserializer);
 
   @protected
   int sse_decode_i_32(SseDeserializer deserializer);
@@ -139,6 +193,21 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   );
 
   @protected
+  void sse_encode_box_autoadd_wry_web_view_position(
+    WryWebViewPosition self,
+    SseSerializer serializer,
+  );
+
+  @protected
+  void sse_encode_box_autoadd_wry_web_view_size(
+    WryWebViewSize self,
+    SseSerializer serializer,
+  );
+
+  @protected
+  void sse_encode_f_64(double self, SseSerializer serializer);
+
+  @protected
   void sse_encode_isize(PlatformInt64 self, SseSerializer serializer);
 
   @protected
@@ -160,6 +229,18 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   );
 
   @protected
+  void sse_encode_opt_box_autoadd_wry_web_view_position(
+    WryWebViewPosition? self,
+    SseSerializer serializer,
+  );
+
+  @protected
+  void sse_encode_opt_box_autoadd_wry_web_view_size(
+    WryWebViewSize? self,
+    SseSerializer serializer,
+  );
+
+  @protected
   void sse_encode_u_8(int self, SseSerializer serializer);
 
   @protected
@@ -168,6 +249,18 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   @protected
   void sse_encode_wry_web_view_config(
     WryWebViewConfig self,
+    SseSerializer serializer,
+  );
+
+  @protected
+  void sse_encode_wry_web_view_position(
+    WryWebViewPosition self,
+    SseSerializer serializer,
+  );
+
+  @protected
+  void sse_encode_wry_web_view_size(
+    WryWebViewSize self,
     SseSerializer serializer,
   );
 

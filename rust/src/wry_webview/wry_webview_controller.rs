@@ -1,3 +1,5 @@
+use crate::wry_webview::wry_webview_config::WryWebViewSize;
+
 use super::{
     window::{RawWindow, RawWindowHandle},
     wry_webview_config::WryWebViewConfig,
@@ -25,6 +27,17 @@ impl WryWebViewController {
         if let Some(html) = config.initial_html {
             webview_builder = webview_builder.with_html(&html);
         }
+        if config.initial_position.is_some() || config.initial_size.is_some() {
+            let position = config.initial_position.unwrap_or_default();
+            let size = config.initial_size.unwrap_or(WryWebViewSize {
+                width: 200.0,
+                height: 200.0,
+            });
+            webview_builder = webview_builder.with_bounds(wry::Rect {
+                position: wry::dpi::LogicalPosition::new(position.x, position.y).into(),
+                size: wry::dpi::LogicalSize::new(size.width, size.height).into(),
+            });
+        }
         if let Some(devtools) = config.initial_devtools {
             webview_builder = webview_builder.with_devtools(devtools);
         }
@@ -35,7 +48,7 @@ impl WryWebViewController {
 
         #[cfg(any(target_os = "windows", target_os = "linux", target_os = "macos"))]
         let webview = webview_builder
-            .build(&window)
+            .build_as_child(&window)
             .map_err(|err| WryWebViewError::CreationError(err.to_string()))?;
 
         Ok(Self { webview })

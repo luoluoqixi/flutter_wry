@@ -36,6 +36,27 @@ pub struct WryWebViewConfig {
     /// - Android: Open `chrome://inspect/#devices` in Chrome to get the devtools window. Wry's `WebView` devtools API isn't supported on Android.
     /// - iOS: Open Safari > Develop > [Your Device Name] > [Your WebView] to get the devtools window.
     pub initial_devtools: Option<bool>,
+    /// Specify the webview position relative to its parent if it will be created as a child
+    /// or if created using [`WebViewBuilderExtUnix::new_gtk`] with [`gtk::Fixed`].
+    ///
+    /// Defaults to `x: 0, y: 0, width: 200, height: 200`.
+    pub initial_position: Option<WryWebViewPosition>,
+    /// Specify the webview position relative to its parent if it will be created as a child
+    /// or if created using [`WebViewBuilderExtUnix::new_gtk`] with [`gtk::Fixed`].
+    ///
+    /// Defaults to `x: 0, y: 0, width: 200, height: 200`.
+    pub initial_size: Option<WryWebViewSize>,
+}
+
+#[derive(Debug, Default)]
+pub struct WryWebViewPosition {
+    pub x: f64,
+    pub y: f64,
+}
+#[derive(Debug, Default)]
+pub struct WryWebViewSize {
+    pub width: f64,
+    pub height: f64,
 }
 
 impl WryWebViewConfig {
@@ -61,5 +82,27 @@ impl WryWebViewConfig {
     pub fn with_initial_devtools(mut self, devtools: bool) -> Self {
         self.initial_devtools = Some(devtools);
         self
+    }
+
+    pub fn with_initial_position(mut self, position: WryWebViewPosition) -> Self {
+        self.initial_position = Some(position);
+        self
+    }
+
+    pub fn with_initial_size(mut self, size: WryWebViewSize) -> Self {
+        self.initial_size = Some(size);
+        self
+    }
+}
+
+impl WryWebViewPosition {
+    pub fn new(x: f64, y: f64) -> Self {
+        Self { x, y }
+    }
+}
+
+impl WryWebViewSize {
+    pub fn new(width: f64, height: f64) -> Self {
+        Self { width, height }
     }
 }
