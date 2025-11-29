@@ -133,6 +133,7 @@ impl RawWindow {
         Ok(child_hwnd)
     }
 
+    #[allow(dead_code)]
     pub fn create_child_window(&self) -> Result<Self, WryWebViewError> {
         #[cfg(target_os = "windows")]
         {
