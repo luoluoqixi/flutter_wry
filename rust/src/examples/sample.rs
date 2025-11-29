@@ -9,9 +9,9 @@ use tao::{
 };
 
 use flutter_wry::wry_webview::{
-    window::RawWindowHandle,
+    raw_window::RawWindowHandle,
     wry_webview_config::{WryWebViewConfig, WryWebViewSize},
-    wry_webview_controller::WryWebViewController,
+    WryWebView,
 };
 
 fn main() {
@@ -28,7 +28,7 @@ fn main() {
     #[cfg(target_os = "macos")]
     let handle = RawWindowHandle::MacOS(window.ns_view() as isize);
 
-    let _controller = WryWebViewController::create(config, handle).unwrap();
+    let _controller = WryWebView::create(config, handle).unwrap();
 
     event_loop.run(move |event, _, control_flow| {
         *control_flow = ControlFlow::Wait;
