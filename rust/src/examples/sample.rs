@@ -16,12 +16,18 @@ use flutter_wry::wry_webview::{
 
 fn main() {
     let event_loop = EventLoop::new();
-    let window = WindowBuilder::new().build(&event_loop).unwrap();
+    let window = WindowBuilder::new()
+        .with_inner_size(tao::dpi::Size::Logical(tao::dpi::LogicalSize {
+            width: 800.0,
+            height: 600.0,
+        }))
+        .build(&event_loop)
+        .unwrap();
 
     let config = WryWebViewConfig::new()
-        .with_initial_url("https://baidu.com")
-        .with_initial_devtools(true)
-        .with_initial_size(WryWebViewSize::new(800.0, 400.0));
+        .with_url("https://baidu.com")
+        .with_devtools(true)
+        .with_size(WryWebViewSize::new(800.0, 600.0));
 
     #[cfg(target_os = "windows")]
     let handle = RawWindowHandle::Windows(window.hwnd());

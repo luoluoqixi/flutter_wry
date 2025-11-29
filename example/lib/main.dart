@@ -20,9 +20,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   void onPressed() {
-    flutterWry.createWebview(
-      WryWebViewConfig(initialUrl: 'https://flutter.dev'),
-    );
+    flutterWry.createWebview(WryWebViewConfig(url: 'https://flutter.dev'));
   }
 
   @override

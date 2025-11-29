@@ -296,12 +296,12 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
     if (arr.length != 6)
       throw Exception('unexpected arr length: expect 6 but see ${arr.length}');
     return WryWebViewConfig(
-      initialUrl: dco_decode_opt_String(arr[0]),
-      initialHtml: dco_decode_opt_String(arr[1]),
-      initialFocused: dco_decode_opt_box_autoadd_bool(arr[2]),
-      initialDevtools: dco_decode_opt_box_autoadd_bool(arr[3]),
-      initialPosition: dco_decode_opt_box_autoadd_wry_web_view_position(arr[4]),
-      initialSize: dco_decode_opt_box_autoadd_wry_web_view_size(arr[5]),
+      url: dco_decode_opt_String(arr[0]),
+      html: dco_decode_opt_String(arr[1]),
+      focused: dco_decode_opt_box_autoadd_bool(arr[2]),
+      devtools: dco_decode_opt_box_autoadd_bool(arr[3]),
+      position: dco_decode_opt_box_autoadd_wry_web_view_position(arr[4]),
+      size: dco_decode_opt_box_autoadd_wry_web_view_size(arr[5]),
     );
   }
 
@@ -481,23 +481,21 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
     SseDeserializer deserializer,
   ) {
     // Codec=Sse (Serialization based), see doc to use other codecs
-    var var_initialUrl = sse_decode_opt_String(deserializer);
-    var var_initialHtml = sse_decode_opt_String(deserializer);
-    var var_initialFocused = sse_decode_opt_box_autoadd_bool(deserializer);
-    var var_initialDevtools = sse_decode_opt_box_autoadd_bool(deserializer);
-    var var_initialPosition = sse_decode_opt_box_autoadd_wry_web_view_position(
+    var var_url = sse_decode_opt_String(deserializer);
+    var var_html = sse_decode_opt_String(deserializer);
+    var var_focused = sse_decode_opt_box_autoadd_bool(deserializer);
+    var var_devtools = sse_decode_opt_box_autoadd_bool(deserializer);
+    var var_position = sse_decode_opt_box_autoadd_wry_web_view_position(
       deserializer,
     );
-    var var_initialSize = sse_decode_opt_box_autoadd_wry_web_view_size(
-      deserializer,
-    );
+    var var_size = sse_decode_opt_box_autoadd_wry_web_view_size(deserializer);
     return WryWebViewConfig(
-      initialUrl: var_initialUrl,
-      initialHtml: var_initialHtml,
-      initialFocused: var_initialFocused,
-      initialDevtools: var_initialDevtools,
-      initialPosition: var_initialPosition,
-      initialSize: var_initialSize,
+      url: var_url,
+      html: var_html,
+      focused: var_focused,
+      devtools: var_devtools,
+      position: var_position,
+      size: var_size,
     );
   }
 
@@ -686,15 +684,12 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
     SseSerializer serializer,
   ) {
     // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_opt_String(self.initialUrl, serializer);
-    sse_encode_opt_String(self.initialHtml, serializer);
-    sse_encode_opt_box_autoadd_bool(self.initialFocused, serializer);
-    sse_encode_opt_box_autoadd_bool(self.initialDevtools, serializer);
-    sse_encode_opt_box_autoadd_wry_web_view_position(
-      self.initialPosition,
-      serializer,
-    );
-    sse_encode_opt_box_autoadd_wry_web_view_size(self.initialSize, serializer);
+    sse_encode_opt_String(self.url, serializer);
+    sse_encode_opt_String(self.html, serializer);
+    sse_encode_opt_box_autoadd_bool(self.focused, serializer);
+    sse_encode_opt_box_autoadd_bool(self.devtools, serializer);
+    sse_encode_opt_box_autoadd_wry_web_view_position(self.position, serializer);
+    sse_encode_opt_box_autoadd_wry_web_view_size(self.size, serializer);
   }
 
   @protected

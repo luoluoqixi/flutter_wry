@@ -13,7 +13,7 @@ class WryWebViewConfig {
   /// ## Note
   ///
   /// Data URLs are not supported, use [`html`](Self::with_html) option instead.
-  final String? initialUrl;
+  final String? url;
 
   /// Load the provided HTML string when the builder calling [`WebViewBuilder::build`] to create the [`WebView`].
   /// This will be ignored if `url` is provided.
@@ -25,14 +25,14 @@ class WryWebViewConfig {
   /// ## PLatform-specific:
   ///
   /// - **Windows:** the string can not be larger than 2 MB (2 * 1024 * 1024 bytes) in total size
-  final String? initialHtml;
+  final String? html;
 
   /// Set whether the webview should be focused when created.
   ///
   /// ## Platform-specific:
   ///
   /// - **macOS / Android / iOS:** Unsupported.
-  final bool? initialFocused;
+  final bool? focused;
 
   /// Enable or disable web inspector which is usually called devtools.
   ///
@@ -45,49 +45,43 @@ class WryWebViewConfig {
   ///   but requires `devtools` feature flag to actually enable it in **release** builds.
   /// - Android: Open `chrome://inspect/#devices` in Chrome to get the devtools window. Wry's `WebView` devtools API isn't supported on Android.
   /// - iOS: Open Safari > Develop > [Your Device Name] > [Your WebView] to get the devtools window.
-  final bool? initialDevtools;
+  final bool? devtools;
 
-  /// Specify the webview position relative to its parent if it will be created as a child
-  /// or if created using [`WebViewBuilderExtUnix::new_gtk`] with [`gtk::Fixed`].
-  ///
-  /// Defaults to `x: 0, y: 0, width: 200, height: 200`.
-  final WryWebViewPosition? initialPosition;
+  /// Defaults to `x: 0, y: 0`.
+  final WryWebViewPosition? position;
 
-  /// Specify the webview position relative to its parent if it will be created as a child
-  /// or if created using [`WebViewBuilderExtUnix::new_gtk`] with [`gtk::Fixed`].
-  ///
-  /// Defaults to `x: 0, y: 0, width: 200, height: 200`.
-  final WryWebViewSize? initialSize;
+  /// Defaults to `width: 800, height: 600`.
+  final WryWebViewSize? size;
 
   const WryWebViewConfig({
-    this.initialUrl,
-    this.initialHtml,
-    this.initialFocused,
-    this.initialDevtools,
-    this.initialPosition,
-    this.initialSize,
+    this.url,
+    this.html,
+    this.focused,
+    this.devtools,
+    this.position,
+    this.size,
   });
 
   @override
   int get hashCode =>
-      initialUrl.hashCode ^
-      initialHtml.hashCode ^
-      initialFocused.hashCode ^
-      initialDevtools.hashCode ^
-      initialPosition.hashCode ^
-      initialSize.hashCode;
+      url.hashCode ^
+      html.hashCode ^
+      focused.hashCode ^
+      devtools.hashCode ^
+      position.hashCode ^
+      size.hashCode;
 
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       other is WryWebViewConfig &&
           runtimeType == other.runtimeType &&
-          initialUrl == other.initialUrl &&
-          initialHtml == other.initialHtml &&
-          initialFocused == other.initialFocused &&
-          initialDevtools == other.initialDevtools &&
-          initialPosition == other.initialPosition &&
-          initialSize == other.initialSize;
+          url == other.url &&
+          html == other.html &&
+          focused == other.focused &&
+          devtools == other.devtools &&
+          position == other.position &&
+          size == other.size;
 }
 
 class WryWebViewPosition {
